@@ -1,4 +1,5 @@
 node_modules/
-dist
+dist/
 .vscode
 coverage
+__tests__/
