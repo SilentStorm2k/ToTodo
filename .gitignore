@@ -2,4 +2,3 @@ node_modules/
 dist/
 .vscode
 coverage
-__tests__/
