@@ -1,32 +1,35 @@
 {
-  "name": "totodo",
-  "version": "1.0.0",
-  "description": "<!-- Copyright notice for this README.md template -->",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --watchAll --coverage --verbose",
-    "build": "webpack --config webpack.prod.js",
-    "start": "webpack serve --open --config webpack.dev.js",
-    "push": "git subtree push --prefix dist origin gh-pages",
-    "deploy": "npm run build && npm run push"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/jest": "^29.5.14",
-    "css-loader": "^7.1.2",
-    "html-loader": "^5.1.0",
-    "html-webpack-plugin": "^5.6.0",
-    "jest": "^29.7.0",
-    "style-loader": "^4.0.0",
-    "ts-jest": "^29.3.1",
-    "ts-loader": "^9.5.1",
-    "ts-node": "^10.9.2",
-    "tsc": "^2.0.4",
-    "typescript": "^5.6.2",
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0"
-  }
+	"name": "totodo",
+	"version": "1.0.0",
+	"description": "<!-- Copyright notice for this README.md template -->",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest --watchAll --coverage --verbose",
+		"build": "webpack --config webpack.prod.js",
+		"start": "webpack serve --open --config webpack.dev.js",
+		"push": "git subtree push --prefix dist origin gh-pages",
+		"deploy": "npm run build && npm run push"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"css-loader": "^7.1.2",
+		"html-loader": "^5.1.0",
+		"html-webpack-plugin": "^5.6.0",
+		"jest": "^29.7.0",
+		"style-loader": "^4.0.0",
+		"ts-jest": "^29.3.1",
+		"ts-loader": "^9.5.1",
+		"ts-node": "^10.9.2",
+		"tsc": "^2.0.4",
+		"typescript": "^5.6.2",
+		"webpack": "^5.95.0",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^5.1.0"
+	},
+	"dependencies": {
+		"date-fns": "^4.1.0",
+		"priority-queue-typescript": "^2.0.3"
+	}
 }
