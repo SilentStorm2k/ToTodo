@@ -1,0 +1,19 @@
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	background-color: var(--color-4);
+}
+#github {
+	width: 1.5rem;
+	height: 1.5rem;
+	background: center / cover no-repeat
+		url(../assets/images/github-logo-light.png);
+	transition: transform 0.5s;
+}
+
+#github:hover {
+	transform: scaleX(-1);
+	background-image: url(../assets/images/github-logo-dark.png);
+}
