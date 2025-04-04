@@ -14,18 +14,17 @@ export default function todoInputForm() {
 	legend.innerText = "Add Todo Details";
 	form.appendChild(legend);
 
-	const input = addLabel(form, "ID", "text", "ID", "");
+	const input = addLabel(form, "ID", "text", "ID");
 	input.setAttribute("readOnly", "");
 	input.setAttribute("disabled", "true");
 	input.classList.add("uid");
 
-	addLabel(form, "Title", "text", "Title", "Title");
-	addLabel(form, "Description", "text", "Description", "Description");
-	addLabel(form, "Priority", "number", "Priority", "1");
-	const today = format(new Date(), "yyyy-MM-dd");
-	addLabel(form, "Due Date", "date", "Due Date", today);
-	addLabel(form, "Story Points", "number", "Story Points", "1");
-	addLabel(form, "Project", "string", "Project", "default");
+	addLabel(form, "Title", "text", "Title");
+	addLabel(form, "Description", "text", "Description");
+	addLabel(form, "Priority", "number", "Priority");
+	addLabel(form, "Due Date", "date", "Due Date");
+	addLabel(form, "Story Points", "number", "Story Points");
+	addLabel(form, "Project", "string", "Project");
 
 	const div = document.createElement("div");
 	const confirmAddButton = document.createElement("button");
@@ -46,8 +45,7 @@ function addLabel(
 	form: HTMLFormElement,
 	innerText: string,
 	type: string,
-	name: string,
-	placeholder: string
+	name: string
 ) {
 	const p = document.createElement("p");
 	form.appendChild(p);
@@ -56,8 +54,6 @@ function addLabel(
 	const input = document.createElement("input");
 	input.type = type;
 	input.name = name;
-	input.placeholder = placeholder;
-	input.value = placeholder;
 	p.appendChild(label);
 	label.appendChild(input);
 	return input;

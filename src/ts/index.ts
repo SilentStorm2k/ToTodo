@@ -43,6 +43,12 @@ export function init() {
 	// addFavicon();
 	Header();
 	// body();
+
+	const todoContainer = document.createElement("div");
+	todoContainer.classList.add("todoContainer");
+	const body = document.querySelector("body");
+	body?.appendChild(todoContainer);
+
 	todoInputForm();
 	Render.setupTodoInputForm();
 	Footer();
