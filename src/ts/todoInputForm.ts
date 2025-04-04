@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { getLargestNumericKey } from "./todo_item";
 
 export default function todoInputForm() {
 	const body = document.querySelector("body");
@@ -13,11 +14,10 @@ export default function todoInputForm() {
 	legend.innerText = "Add Todo Details";
 	form.appendChild(legend);
 
-	const p = document.createElement("p");
-	form.appendChild(p);
-	const label = document.createElement("label");
-	label.innerText = "ID";
-	p.appendChild(label);
+	const input = addLabel(form, "ID", "text", "ID", "");
+	input.setAttribute("readOnly", "");
+	input.setAttribute("disabled", "true");
+	input.classList.add("uid");
 
 	addLabel(form, "Title", "text", "Title", "Title");
 	addLabel(form, "Description", "text", "Description", "Description");
@@ -59,5 +59,6 @@ function addLabel(
 	input.placeholder = placeholder;
 	input.value = placeholder;
 	p.appendChild(label);
-	p.appendChild(input);
+	label.appendChild(input);
+	return input;
 }

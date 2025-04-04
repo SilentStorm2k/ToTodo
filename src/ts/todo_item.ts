@@ -31,7 +31,7 @@ export default function createTodo(
 	};
 }
 
-function getLargestNumericKey(): number {
+export function getLargestNumericKey(): number {
 	let largest: number | undefined = 0;
 
 	for (let i = 0; i < localStorage.length; i++) {

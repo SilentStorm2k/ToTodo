@@ -1,10 +1,19 @@
 import { parse } from "date-fns";
-import create_todo from "./todo_item";
+import create_todo, { getLargestNumericKey } from "./todo_item";
 import { todoList } from "./todo_list";
 
 export const Render = (function () {
 	const createTodo = () => {
-		// alert("this is a simple alert");
+		const todoInputFormDialog = document.getElementById(
+			"todoInputFormDialog"
+		) as HTMLDialogElement;
+
+		const id = todoInputFormDialog.querySelector(".uid");
+		id?.setAttribute("placeholder", getLargestNumericKey().toString());
+		todoInputFormDialog.showModal();
+	};
+
+	const setupTodoInputForm = () => {
 		const todoInputFormDialog = document.getElementById(
 			"todoInputFormDialog"
 		) as HTMLDialogElement;
@@ -31,12 +40,12 @@ export const Render = (function () {
 				enteredDetails.project as string
 			);
 			todoList.addTodo(newTodo);
+			todoInputFormDialog?.close();
 		});
-		todoInputFormDialog?.showModal();
 		todoInputFormDialog?.addEventListener("close", (e) => {
 			console.log(todoInputFormDialog.returnValue);
 		});
 	};
 
-	return { createTodo };
+	return { createTodo, setupTodoInputForm };
 })();

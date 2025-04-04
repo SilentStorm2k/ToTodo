@@ -25,7 +25,8 @@ export const todoList = (function () {
 		let todos: TodoItem[] = [];
 		for (let i = 0; i < localStorage.length; i++) {
 			let key = localStorage.key(i);
-			if (key && getTodo(key)) todos.push(getTodo(key) as TodoItem);
+			if (key && !isNaN(Number(key)))
+				todos.push(getTodo(key) as TodoItem);
 		}
 		return sortTodos(todos);
 	};

@@ -5,6 +5,7 @@ import todoInputForm from "./todoInputForm";
 import reset from "./reset";
 import createTodo from "./todo_item";
 import { todoList } from "./todo_list";
+import { Render } from "./renderTodos";
 
 function test() {
 	let todo = createTodo(
@@ -43,6 +44,7 @@ export function init() {
 	Header();
 	// body();
 	todoInputForm();
+	Render.setupTodoInputForm();
 	Footer();
 }
 
