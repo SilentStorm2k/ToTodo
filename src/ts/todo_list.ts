@@ -1,6 +1,5 @@
 import { TodoItem } from "./todo_item";
-import { PriorityQueue } from "priority-queue-typescript";
-import { differenceInDays, isSameDay } from "date-fns";
+import { isBefore, isSameDay } from "date-fns";
 
 export const todoList = (function () {
 	const addTodo = (todo: TodoItem): void =>
@@ -41,16 +40,22 @@ export const todoList = (function () {
 	};
 
 	const sortTodos = (todos: TodoItem[]): TodoItem[] => {
-		let sortedTodos = new PriorityQueue<TodoItem>(
-			10,
-			(a: TodoItem, b: TodoItem) => {
-				if (isSameDay(a.dueDate, b.dueDate))
-					return a.priority - b.priority;
-				return differenceInDays(a.dueDate, b.dueDate);
-			}
-		);
-		for (let todo of todos) sortedTodos.add(todo);
-		return sortedTodos.toArray();
+		return todos.sort(sortForTodoList);
+	};
+
+	const sortForTodoList = (todoA: TodoItem, todoB: TodoItem): number => {
+		const priorityA = todoA.priority;
+		const priorityB = todoB.priority;
+		const dueDateA = todoA.dueDate;
+		const dueDateB = todoB.dueDate;
+		const idA = todoA.id;
+		const idB = todoB.id;
+
+		if (isSameDay(dueDateA, dueDateB)) {
+			if (priorityA == priorityB) return Number(idA) - Number(idB);
+			else return priorityA - priorityB;
+		}
+		return isBefore(dueDateA, dueDateB) ? -1 : 1;
 	};
 
 	return { addTodo, removeTodo, getTodo, getAllTodos, getProject };

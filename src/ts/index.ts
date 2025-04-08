@@ -34,6 +34,8 @@ function test() {
 	todos.sort((a, b) => a.priority - b.priority);
 
 	console.log(todos);
+
+	console.log("TEST ENDS");
 }
 
 test();
@@ -49,8 +51,9 @@ export function init() {
 	const body = document.querySelector("body");
 	body?.appendChild(todoContainer);
 
-	todoInputForm();
-	Render.setupTodoInputForm();
+	todoInputForm(); // this creates the input form in html (sets up dialog modal, etc.)
+	Render.setupTodoInputForm(); // this adds the functionality of the input form (buttons, default values, etc.)
+	Render.showTodos(todoList.getAllTodos()); // shows all todos
 	Footer();
 }
 

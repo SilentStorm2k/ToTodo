@@ -11,9 +11,6 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
-      priority-queue-typescript:
-        specifier: ^2.0.3
-        version: 2.0.3
     devDependencies:
       css-loader:
         specifier: ^7.1.2
@@ -1869,9 +1866,6 @@ packages:
   pretty-format@29.7.0:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-
-  priority-queue-typescript@2.0.3:
-    resolution: {integrity: sha512-/0vW1F1dahvFb+63HMNkAG2kW6MHNELy6mZ2MsOgxQke3/EbVUV9bjRZUgQDaIFG22O2/C7r1mBbsFiTA/iFBw==}
 
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -4573,8 +4567,6 @@ snapshots:
       '@jest/schemas': 29.6.3
       ansi-styles: 5.2.0
       react-is: 18.3.1
-
-  priority-queue-typescript@2.0.3: {}
 
   process-nextick-args@2.0.1: {}
 

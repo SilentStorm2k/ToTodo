@@ -16,7 +16,7 @@ export const Render = (function () {
 	const setModalDefaults = (todoInputFormDialog: HTMLElement | null) => {
 		const inputs = todoInputFormDialog?.querySelectorAll("input");
 		const placeholders = [
-			getLargestNumericKey().toString(),
+			(getLargestNumericKey() + 1).toString(),
 			"Title",
 			"Description",
 			"1",
@@ -32,24 +32,19 @@ export const Render = (function () {
 		}
 	};
 
-	const showTodos = (proj: string) => {
+	const showTodos = (todos: TodoItem[]) => {
 		const todoContainer: HTMLElement | null =
 			document.querySelector(".todoContainer");
 		cleanElement(todoContainer);
-		console.log(todoContainer);
-		const todos: TodoItem[] = todoList.getProject(proj);
 		for (const todo of todos) todoContainer?.appendChild(todoDiv(todo));
-	};
-	const addTodo = (id: string) => {
-		const todoContainer = document.querySelector(".todoContainer");
-		console.log(`the todo holder is ${todoContainer}`);
-		const todo = todoList.getTodo(id);
-		if (todo) todoContainer?.appendChild(todoDiv(todo));
 	};
 
 	const todoDiv = (todo: TodoItem) => {
 		const div = document.createElement("div");
-		div.innerText = todo.id;
+		div.innerText = `${todo.id}, Duedate = ${format(
+			todo.dueDate,
+			"dd-MM-yyyy"
+		)}, Priority = ${todo.priority}`;
 		return div;
 	};
 
@@ -82,12 +77,14 @@ export const Render = (function () {
 			todoList.addTodo(newTodo);
 			todoInputFormDialog?.close();
 			// addTodo((getLargestNumericKey() - 1).toString());
-			showTodos("default");
+
+			const defaultProjectTodos = todoList.getProject("default");
+			showTodos(defaultProjectTodos);
 		});
 		todoInputFormDialog?.addEventListener("close", (e) => {
 			console.log(todoInputFormDialog.returnValue);
 		});
 	};
 
-	return { createTodo, setupTodoInputForm };
+	return { createTodo, setupTodoInputForm, showTodos };
 })();
