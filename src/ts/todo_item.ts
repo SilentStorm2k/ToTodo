@@ -6,20 +6,20 @@ export interface TodoItem {
 	dueDate: Date;
 	storyPoints: number;
 	project: string;
+	completed: boolean;
+	toArray(): Array<string | number | Date | Boolean>;
 }
 
-let curId: number = getLargestNumericKey();
-
 export default function createTodo(
+	id: string,
 	title: string,
 	description: string,
 	priority: number,
 	dueDate: Date,
 	storyPoints: number,
-	project: string
+	project: string,
+	completed: boolean
 ): TodoItem {
-	curId++;
-	const id: string = curId.toString();
 	return {
 		id,
 		title,
@@ -28,6 +28,36 @@ export default function createTodo(
 		dueDate,
 		storyPoints,
 		project,
+		completed,
+		toArray() {
+			return [
+				id,
+				title,
+				description,
+				priority,
+				dueDate,
+				storyPoints,
+				project,
+			];
+		},
+	};
+}
+
+export function createTodoObject(todoItem: TodoItem): TodoItem {
+	return {
+		...todoItem,
+		toArray(): (string | number | Date | Boolean)[] {
+			return [
+				todoItem.id,
+				todoItem.title,
+				todoItem.description,
+				todoItem.priority,
+				todoItem.dueDate,
+				todoItem.storyPoints,
+				todoItem.project,
+				todoItem.completed,
+			];
+		},
 	};
 }
 

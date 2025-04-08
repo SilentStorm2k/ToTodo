@@ -14,21 +14,22 @@ export default function todoInputForm() {
 	legend.innerText = "Add Todo Details";
 	form.appendChild(legend);
 
-	const input = addLabel(form, "ID", "text", "ID");
+	const label = addLabel(form, "ID", "text", "id");
+	const input = label.children[0] as HTMLElement;
 	input.setAttribute("readOnly", "");
-	input.setAttribute("disabled", "true");
+	label.setAttribute("hidden", "true");
 	input.classList.add("uid");
 
-	addLabel(form, "Title", "text", "Title");
-	addLabel(form, "Description", "text", "Description");
-	addLabel(form, "Priority", "number", "Priority");
-	addLabel(form, "Due Date", "date", "Due Date");
-	addLabel(form, "Story Points", "number", "Story Points");
-	addLabel(form, "Project", "string", "Project");
+	addLabel(form, "Title", "text", "title");
+	addLabel(form, "Description", "text", "description");
+	addLabel(form, "Priority", "number", "priority");
+	addLabel(form, "Due Date", "date", "dueDate");
+	addLabel(form, "Story Points", "number", "storyPoints");
+	addLabel(form, "Project", "string", "project");
 
 	const div = document.createElement("div");
 	const confirmAddButton = document.createElement("button");
-	confirmAddButton.innerText = "Create";
+	confirmAddButton.innerText = "Confirm";
 	confirmAddButton.type = "submit";
 	confirmAddButton.value = "Normal close";
 	confirmAddButton.id = "addButtonInDialog";
@@ -56,5 +57,5 @@ function addLabel(
 	input.name = name;
 	p.appendChild(label);
 	label.appendChild(input);
-	return input;
+	return label;
 }

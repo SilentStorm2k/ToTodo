@@ -1,0 +1,103 @@
+.todo-card {
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 16px;
+	margin-bottom: 12px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-checkbox {
+	margin-right: 16px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.mainContainer {
+	display: flex;
+	flex-grow: 1; /* Allows mainContainer to take up available space */
+	align-items: center; /* Vertically align information and additional info */
+	justify-content: space-between; /* Puts space between information and additional info */
+}
+
+.todo-information {
+	flex-grow: 1; /* Allows information to take up available space */
+}
+
+.todo-title {
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin-bottom: 4px;
+	color: #333;
+}
+
+.todo-description {
+	font-size: 0.9rem;
+	color: #666;
+	line-height: 1.4;
+}
+
+.todo-additional-info {
+	display: flex;
+	flex-direction: column; /* Stack story points and due date vertically */
+	margin-left: 16px;
+	font-size: 0.85rem;
+	color: #777;
+}
+
+.todo-additional-info > div {
+	margin-bottom: 4px;
+}
+
+.todo-additional-info > div:last-child {
+	margin-bottom: 0;
+}
+
+.todo-card
+	input[type="checkbox"]:checked
+	+ .mainContainer
+	.todo-information
+	.todo-title {
+	text-decoration: line-through;
+	color: #999;
+}
+
+.todo-card
+	input[type="checkbox"]:checked
+	+ .mainContainer
+	.todo-information
+	.todo-description {
+	color: #aaa;
+}
+
+/* Priority 1 (High) Styling */
+.todo-card.p1 {
+	border-left: 5px solid #ff4d4d; /* Red color for high priority */
+}
+
+/* Priority 2 (Medium) Styling */
+.todo-card.p2 {
+	border-left: 5px solid #ffa94d; /* Orange color for medium priority */
+}
+
+/* Priority 3 (Low) Styling */
+.todo-card.p3 {
+	border-left: 5px solid #52c41a; /* Green color for low priority */
+}
+
+/* Optional: You can also change the background color or other properties */
+
+.todo-card.p1 {
+	background-color: #ffe6e6;
+}
+
+.todo-card.p2 {
+	background-color: #fff2e6;
+}
+
+.todo-card.p3 {
+	background-color: #f6ffed;
+}

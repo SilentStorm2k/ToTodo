@@ -1,4 +1,4 @@
-import { TodoItem } from "./todo_item";
+import createTodo, { createTodoObject, TodoItem } from "./todo_item";
 import { isBefore, isSameDay } from "date-fns";
 
 export const todoList = (function () {
@@ -12,7 +12,8 @@ export const todoList = (function () {
 		const storedTodo = localStorage.getItem(id);
 		if (storedTodo) {
 			try {
-				return JSON.parse(storedTodo) as TodoItem;
+				const parsedTodo = JSON.parse(storedTodo) as TodoItem;
+				return createTodoObject(parsedTodo);
 			} catch (error) {
 				console.error(`Error parsing Todo item with ID ${id}`, error);
 			}

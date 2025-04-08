@@ -9,12 +9,14 @@ import { Render } from "./renderTodos";
 
 function test() {
 	let todo = createTodo(
+		"1",
 		"title",
 		"description",
 		1,
-		new Date(2025, 4, 3),
+		new Date(),
 		3,
-		"Proj"
+		"Proj",
+		false
 	);
 
 	todoList.addTodo(todo);
