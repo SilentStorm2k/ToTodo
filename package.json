@@ -7,8 +7,9 @@
 		"test": "jest --watchAll --coverage --verbose",
 		"build": "webpack --config webpack.prod.js",
 		"start": "webpack serve --open --config webpack.dev.js",
+		"deployCommit": "git add dist -f && git commit -m 'Deployment commit'",
 		"push": "git subtree push --prefix dist origin gh-pages",
-		"deploy": "pnpm run build && pnpm run push"
+		"deploy": "pnpm run build && pnpm run deployCommit && pnpm run push & git checkout main"
 	},
 	"keywords": [],
 	"author": "",
