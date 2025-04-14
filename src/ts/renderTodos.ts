@@ -148,11 +148,9 @@ export const Render = (function () {
 		const todoInputFormDialog = document.getElementById(
 			"todoInputFormDialog"
 		) as HTMLDialogElement;
-		const confirmAddButton =
-			todoInputFormDialog?.querySelector("#addButtonInDialog");
 		const todoInputForm = todoInputFormDialog?.querySelector("form");
 
-		confirmAddButton?.addEventListener("click", (event) => {
+		todoInputForm?.addEventListener("submit", (event) => {
 			event.preventDefault();
 			const formData = new FormData(
 				todoInputForm ? todoInputForm : undefined

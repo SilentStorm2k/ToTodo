@@ -1,9 +1,12 @@
 import createTodo, { createTodoObject, TodoItem } from "./todo_item";
 import { isBefore, isSameDay } from "date-fns";
+import { assert } from "chai";
 
 export const todoList = (function () {
-	const addTodo = (todo: TodoItem): void =>
+	const addTodo = (todo: TodoItem): void => {
+		if (!isValidTodo(todo)) return;
 		localStorage.setItem(todo.id, JSON.stringify(todo));
+	};
 
 	const removeTodo = (todo: TodoItem): void =>
 		localStorage.removeItem(todo.id);
@@ -57,6 +60,23 @@ export const todoList = (function () {
 			else return priorityA - priorityB;
 		}
 		return isBefore(dueDateA, dueDateB) ? -1 : 1;
+	};
+
+	const isValidTodo = (todo: TodoItem): boolean => {
+		try {
+			assert(
+				!isNaN(Number(todo.id)) && Number(todo.id) > 0,
+				`Id value ${todo.id} is invalid, must be a number > 0`
+			);
+			assert(
+				todo.priority >= 1 && todo.priority <= 3,
+				`Priority must take a value between 1-3, the Todo with id: ${todo.id} has priority of ${todo.priority}`
+			);
+		} catch (error) {
+			console.error(error);
+			return false;
+		}
+		return true;
 	};
 
 	return { addTodo, removeTodo, getTodo, getAllTodos, getProject };

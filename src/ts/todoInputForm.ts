@@ -14,18 +14,38 @@ export default function todoInputForm() {
 	legend.innerText = "Add Todo Details";
 	form.appendChild(legend);
 
-	const label = addLabel(form, "ID", "text", "id");
+	const label = addLabel(form, "ID", "text", "id", true);
 	const input = label.children[0] as HTMLElement;
 	input.setAttribute("readOnly", "");
 	label.setAttribute("hidden", "true");
 	input.classList.add("uid");
 
-	addLabel(form, "Title", "text", "title");
+	addLabel(form, "Title", "text", "title", true);
 	addLabel(form, "Description", "text", "description");
-	addLabel(form, "Priority", "number", "priority");
-	addLabel(form, "Due Date", "date", "dueDate");
-	addLabel(form, "Story Points", "number", "storyPoints");
-	addLabel(form, "Project", "string", "project");
+	const priorityLabel = addLabel(
+		form,
+		"Priority",
+		"number",
+		"priority",
+		true
+	);
+	const priorityInput = priorityLabel.children[0] as HTMLInputElement;
+	priorityInput.min = "1";
+	priorityInput.max = "3";
+	const dateLabel = addLabel(form, "Due Date", "date", "dueDate", true);
+	const dateInput = dateLabel.children[0] as HTMLInputElement;
+	dateInput.min = format(new Date(), "yyyy-MM-dd");
+
+	const storyPointsLabel = addLabel(
+		form,
+		"Story Points",
+		"number",
+		"storyPoints"
+	);
+	const storyPointsInput = storyPointsLabel.children[0] as HTMLInputElement;
+	storyPointsInput.min = "1";
+	storyPointsInput.max = "10";
+	addLabel(form, "Project", "string", "project", true);
 
 	const div = document.createElement("div");
 	const confirmAddButton = document.createElement("button");
@@ -46,7 +66,8 @@ function addLabel(
 	form: HTMLFormElement,
 	innerText: string,
 	type: string,
-	name: string
+	name: string,
+	required: boolean = false
 ) {
 	const p = document.createElement("p");
 	form.appendChild(p);
@@ -55,6 +76,7 @@ function addLabel(
 	const input = document.createElement("input");
 	input.type = type;
 	input.name = name;
+	input.required = required;
 	p.appendChild(label);
 	label.appendChild(input);
 	return label;
