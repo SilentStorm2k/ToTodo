@@ -3,6 +3,7 @@ import { isBefore, isSameDay } from "date-fns";
 import { assert } from "chai";
 
 export const todoList = (function () {
+	const delimiter = ">/\\<";
 	const addTodo = (todo: TodoItem): void => {
 		if (!isValidTodo(todo)) return;
 		localStorage.setItem(todo.id, JSON.stringify(todo));
@@ -79,5 +80,33 @@ export const todoList = (function () {
 		return true;
 	};
 
-	return { addTodo, removeTodo, getTodo, getAllTodos, getProject };
+	const addProject = (project: string) => {
+		assert(
+			project.includes(delimiter),
+			`Project should not contain the delimiter ${delimiter}`
+		);
+		let projects = getProjectNames();
+		if (projects.includes(project)) return;
+		else {
+			let projectVal = localStorage.getItem("Projects");
+			projectVal = projectVal + delimiter + project;
+			localStorage.setItem("Projects", projectVal);
+		}
+	};
+
+	const getProjectNames = (): string[] => {
+		const projectVal = localStorage.getItem("Projects");
+		const projects = projectVal?.split(delimiter);
+		return projects ? projects : [];
+	};
+	return {
+		addTodo,
+		addProject,
+		delimiter,
+		removeTodo,
+		getTodo,
+		getAllTodos,
+		getProject,
+		getProjectNames,
+	};
 })();

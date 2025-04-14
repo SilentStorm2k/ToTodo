@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { getLargestNumericKey } from "./todo_item";
+import { todoList } from "./todo_list";
 
 export default function todoInputForm() {
 	const body = document.querySelector("body");
@@ -45,7 +46,7 @@ export default function todoInputForm() {
 	const storyPointsInput = storyPointsLabel.children[0] as HTMLInputElement;
 	storyPointsInput.min = "1";
 	storyPointsInput.max = "10";
-	addLabel(form, "Project", "string", "project", true);
+	addProjectDropdown(form);
 
 	const div = document.createElement("div");
 	const confirmAddButton = document.createElement("button");
@@ -80,4 +81,24 @@ function addLabel(
 	p.appendChild(label);
 	label.appendChild(input);
 	return label;
+}
+
+function addProjectDropdown(form: HTMLFormElement) {
+	const p = document.createElement("p");
+	form.appendChild(p);
+	const label = document.createElement("label");
+	label.innerText = "Project";
+	const select = document.createElement("select");
+	select.required = true;
+	select.name = "project";
+	select.innerText = "Project";
+	const projects = todoList.getProjectNames();
+	for (const projId in projects) {
+		const option = document.createElement("option");
+		option.value = projects[projId];
+		option.innerText = projects[projId];
+		select.appendChild(option);
+	}
+	p.appendChild(label);
+	label.appendChild(select);
 }

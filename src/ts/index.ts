@@ -38,6 +38,7 @@ function test() {
 	console.log(todos);
 
 	console.log("TEST ENDS");
+	localStorage.setItem("Projects", "default");
 }
 
 test();
