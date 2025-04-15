@@ -8,8 +8,24 @@ export const Sidebar = (function () {
 
 	const createSidebarContainer = () => {
 		const container = document.createElement("div");
-
+		container.classList.add("sidebar-closed");
+		container.classList.add("sidebar");
+		const expandButton = document.createElement("button");
+		expandButton.addEventListener("click", toggleSidebar);
+		container.appendChild(expandButton);
 		return container;
+	};
+
+	const toggleSidebar = (event: MouseEvent) => {
+		const expandButton = event.target as HTMLElement;
+		const sidebar = expandButton.parentElement;
+		if (sidebar?.classList.contains("sidebar-closed")) {
+			sidebar.classList.remove("sidebar-closed");
+			sidebar?.classList.add("sidebar-open");
+		} else {
+			sidebar?.classList.add("sidebar-closed");
+			sidebar?.classList.remove("sidebar-open");
+		}
 	};
 
 	const createInbox = () => {

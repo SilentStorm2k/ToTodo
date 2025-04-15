@@ -49,17 +49,20 @@ export function init() {
 	const body = document.querySelector("body");
 	const header = Header();
 	const footer = Footer();
+	const content = document.createElement("div");
+	content.classList.add("content");
 	const sidebar = Sidebar.init();
 	const todoInputFormDiv = todoInputForm(); // this creates the input form in html (sets up dialog modal, etc.)
 	const todoContainer = document.createElement("div");
 	todoContainer.classList.add("todoContainer");
+	content.appendChild(sidebar);
+	content.appendChild(todoContainer);
 
 	// adding elements in order to body
 	cleanElement(body);
 	// addFavicon();
 	body?.appendChild(header);
-	body?.appendChild(sidebar);
-	body?.appendChild(todoContainer);
+	body?.appendChild(content);
 	body?.appendChild(todoInputFormDiv);
 	body?.appendChild(footer);
 

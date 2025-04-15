@@ -16,3 +16,13 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 }
+
+.content {
+	display: flex;
+	flex-direction: row;
+}
+
+.todoContainer {
+	flex: auto;
+	padding: 1rem;
+}
