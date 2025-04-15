@@ -1,8 +1,37 @@
-import { assert } from "chai";
 import { todoList } from "./todo_list";
+import "../css/sidebar.styles.css";
 
-const sidebar = () => {
+export const sidebar = () => {
 	const addProject = (project: string) => {
 		todoList.addProject(project);
 	};
+
+	const createSidebarContainer = () => {
+		const container = document.createElement("div");
+
+		return container;
+	};
+
+	const createInbox = () => {
+		const inbox = document.createElement("div");
+
+		return inbox;
+	};
+
+	const createProjects = () => {
+		const projects = document.createElement("div");
+
+		return projects;
+	};
+
+	const init = () => {
+		const sidebarContainer = createSidebarContainer();
+		const inbox = createInbox();
+		const projects = createProjects();
+		sidebarContainer.appendChild(inbox);
+		sidebarContainer.appendChild(projects);
+		return sidebarContainer;
+	};
+
+	return { init };
 };

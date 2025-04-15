@@ -5,10 +5,9 @@ import { Render } from "./renderTodos";
 
 export function Header() {
 	// home button, expand button, searchbar?, addTodo, user
-	const body = document.querySelector("body");
 	const header = document.createElement("header");
-	body?.appendChild(header);
 	addHeaderButtons(header);
+	return header;
 }
 
 function addHeaderButtons(header: HTMLElement) {

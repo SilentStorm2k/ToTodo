@@ -3,10 +3,8 @@ import { getLargestNumericKey } from "./todo_item";
 import { todoList } from "./todo_list";
 
 export default function todoInputForm() {
-	const body = document.querySelector("body");
 	const dialog = document.createElement("dialog");
 	dialog.id = "todoInputFormDialog";
-	body?.appendChild(dialog);
 	const form = document.createElement("form");
 	form.method = "post";
 	dialog.appendChild(form);
@@ -61,6 +59,7 @@ export default function todoInputForm() {
 	div.appendChild(confirmAddButton);
 	div.appendChild(cancelButton);
 	form.appendChild(div);
+	return dialog;
 }
 
 function addLabel(

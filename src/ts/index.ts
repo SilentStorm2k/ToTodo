@@ -2,7 +2,7 @@ import "../css/styles.css";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import todoInputForm from "./todoInputForm";
-import reset from "./reset";
+import reset, { cleanElement } from "./reset";
 import createTodo from "./todo_item";
 import { todoList } from "./todo_list";
 import { Render } from "./renderTodos";
@@ -44,20 +44,19 @@ function test() {
 test();
 
 export function init() {
-	reset();
+	const body = document.querySelector("body");
+	cleanElement(body);
 	// addFavicon();
-	Header();
-	// body();
+	body?.appendChild(Header());
 
 	const todoContainer = document.createElement("div");
 	todoContainer.classList.add("todoContainer");
-	const body = document.querySelector("body");
 	body?.appendChild(todoContainer);
 
-	todoInputForm(); // this creates the input form in html (sets up dialog modal, etc.)
+	body?.appendChild(todoInputForm()); // this creates the input form in html (sets up dialog modal, etc.)
 	Render.setupTodoInputForm(); // this adds the functionality of the input form (buttons, default values, etc.)
 	Render.showTodos(todoList.getAllTodos()); // shows all todos
-	Footer();
+	body?.appendChild(Footer());
 }
 
 init();
