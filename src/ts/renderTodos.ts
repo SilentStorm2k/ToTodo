@@ -86,8 +86,19 @@ export const Render = (function () {
 		detailsDiv.appendChild(additionalInformation);
 		detailsDiv.classList.add("mainContainer");
 
+		const deleteTodoButton = document.createElement("button");
+		deleteTodoButton.style.backgroundImage =
+			"url(../assets/images/delete.png)";
+		deleteTodoButton.addEventListener("click", (e) => {
+			todoList.removeTodo(todo);
+			const curState = localStorage.getItem("state") as string;
+			if (curState == "") Render.showTodos(todoList.getAllTodos());
+			else Render.showTodos(todoList.getProject(curState));
+		});
+
 		div.appendChild(completed);
 		div.appendChild(detailsDiv);
+		div.appendChild(deleteTodoButton);
 
 		// div.innerText = `${todo.id}, Priority = ${todo.priority}, Title = ${todo.title}`;
 
@@ -246,9 +257,10 @@ export const Render = (function () {
 
 		cardDiv.appendChild(projectDetails);
 
-		cardDiv.addEventListener("click", () =>
-			Render.showTodos(todoList.getProject(project.name))
-		);
+		cardDiv.addEventListener("click", () => {
+			localStorage.setItem("state", project.name);
+			Render.showTodos(todoList.getProject(project.name));
+		});
 
 		return cardDiv;
 	};

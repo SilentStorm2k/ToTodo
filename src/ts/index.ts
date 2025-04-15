@@ -57,6 +57,7 @@ export function init() {
 	todoContainer.classList.add("todoContainer");
 	content.appendChild(sidebar);
 	content.appendChild(todoContainer);
+	localStorage.setItem("state", "");
 
 	// adding elements in order to body
 	cleanElement(body);

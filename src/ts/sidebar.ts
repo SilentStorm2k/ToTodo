@@ -44,6 +44,7 @@ export const Sidebar = (function () {
 		) as HTMLElement;
 		cleanElement(todoContainer);
 		const allTodos = todoList.getAllTodos();
+		localStorage.setItem("state", "");
 		Render.showTodos(allTodos);
 	};
 
@@ -96,6 +97,7 @@ export const Sidebar = (function () {
 			const projectButton = document.createElement("button");
 			console.log(todoList.getProject(projects[projectId]));
 			projectButton.addEventListener("click", () => {
+				localStorage.setItem("state", projects[projectId]);
 				Render.showTodos(todoList.getProject(projects[projectId]));
 			});
 			projectButton.innerText = projects[projectId];

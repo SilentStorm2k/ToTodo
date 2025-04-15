@@ -73,6 +73,20 @@
 	color: #aaa;
 }
 
+.todo-card button {
+	align-self: center;
+	margin: 1rem;
+	align-items: center;
+	background: 0 0;
+	border: hidden;
+	cursor: pointer;
+	padding: 1rem;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url(../assets/images/delete.png);
+}
+
 /* Priority 1 (High) Styling */
 .todo-card.p1 {
 	border-left: 5px solid #ff4d4d; /* Red color for high priority */
