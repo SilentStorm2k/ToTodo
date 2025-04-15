@@ -209,6 +209,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 ## Acknowledgments
 
 <a href="https://www.flaticon.com/free-icons/trashcan" title="trashcan icons">Trashcan icons created by Bombasticon Studio - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/fruit" title="fruit icons">Fruit icons created by juicy_fish - Flaticon</a>
 
 -   []()
 -   []()

@@ -7,6 +7,7 @@ import createTodo from "./todo_item";
 import { todoList } from "./todo_list";
 import { Render } from "./renderTodos";
 import { Sidebar } from "./sidebar";
+import favicon from "./favicon";
 
 function test() {
 	let todo = createTodo(
@@ -19,7 +20,6 @@ function test() {
 		"Proj",
 		false
 	);
-
 	todoList.addTodo(todo);
 	todoList.addTodo({ ...todo, id: "2", priority: 5 });
 	todoList.addTodo({ ...todo, id: "3", priority: 3 });
@@ -27,25 +27,20 @@ function test() {
 	todoList.addTodo({ ...todo, id: "5" });
 
 	console.log(todoList.getTodo("1"));
-
 	console.log("hello world");
-
 	console.log(todoList.getAllTodos());
-
 	let todos = todoList.getAllTodos();
-
 	todos.sort((a, b) => a.priority - b.priority);
-
 	console.log(todos);
-
 	console.log("TEST ENDS");
 	localStorage.setItem("Projects", "default");
 }
 
-test();
+// test();
 
 export function init() {
 	// setup
+	const head = document.querySelector("head");
 	const body = document.querySelector("body");
 	const header = Header();
 	const footer = Footer();
@@ -57,11 +52,12 @@ export function init() {
 	todoContainer.classList.add("todoContainer");
 	content.appendChild(sidebar);
 	content.appendChild(todoContainer);
+	const faviconElement = favicon();
 	localStorage.setItem("state", "");
 
 	// adding elements in order to body
+	head?.appendChild(faviconElement);
 	cleanElement(body);
-	// addFavicon();
 	body?.appendChild(header);
 	body?.appendChild(content);
 	body?.appendChild(todoInputFormDiv);
