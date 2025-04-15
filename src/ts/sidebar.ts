@@ -34,6 +34,7 @@ export const Sidebar = (function () {
 	const createInbox = () => {
 		const inboxButton = document.createElement("button");
 		inboxButton.innerText = "Inbox";
+		inboxButton.classList.add("button-outline");
 		inboxButton.addEventListener("click", openInbox);
 		return inboxButton;
 	};
@@ -64,6 +65,7 @@ export const Sidebar = (function () {
 
 		projectText.innerText = "Projects";
 		projectText.addEventListener("click", () => Render.showProjects());
+		projectText.classList.add("button-outline");
 		return projects;
 	};
 
@@ -101,6 +103,7 @@ export const Sidebar = (function () {
 				Render.showTodos(todoList.getProject(projects[projectId]));
 			});
 			projectButton.innerText = projects[projectId];
+			projectButton.classList.add("button-outline");
 			listElement.appendChild(projectButton);
 			unorderedList.appendChild(listElement);
 		}

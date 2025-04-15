@@ -125,6 +125,9 @@ export const Render = (function () {
 		if (todoCheckbox.checked) todo.completed = true;
 		else todo.completed = false;
 		todoList.addTodo(todo); // updates the value
+		const state = localStorage.getItem("state") as string;
+		if (state != "") Render.showTodos(todoList.getProject(state));
+		else Render.showTodos(todoList.getAllTodos());
 	};
 
 	const expandTodo = (e: MouseEvent) => {
