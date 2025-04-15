@@ -6,6 +6,7 @@ import reset, { cleanElement } from "./reset";
 import createTodo from "./todo_item";
 import { todoList } from "./todo_list";
 import { Render } from "./renderTodos";
+import { Sidebar } from "./sidebar";
 
 function test() {
 	let todo = createTodo(
@@ -48,6 +49,7 @@ export function init() {
 	const body = document.querySelector("body");
 	const header = Header();
 	const footer = Footer();
+	const sidebar = Sidebar.init();
 	const todoInputFormDiv = todoInputForm(); // this creates the input form in html (sets up dialog modal, etc.)
 	const todoContainer = document.createElement("div");
 	todoContainer.classList.add("todoContainer");
@@ -56,6 +58,7 @@ export function init() {
 	cleanElement(body);
 	// addFavicon();
 	body?.appendChild(header);
+	body?.appendChild(sidebar);
 	body?.appendChild(todoContainer);
 	body?.appendChild(todoInputFormDiv);
 	body?.appendChild(footer);

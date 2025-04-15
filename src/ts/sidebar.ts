@@ -1,7 +1,7 @@
 import { todoList } from "./todo_list";
 import "../css/sidebar.styles.css";
 
-export const sidebar = () => {
+export const Sidebar = (function () {
 	const addProject = (project: string) => {
 		todoList.addProject(project);
 	};
@@ -34,4 +34,4 @@ export const sidebar = () => {
 	};
 
 	return { init };
-};
+})();
