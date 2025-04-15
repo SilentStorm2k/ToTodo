@@ -1,6 +1,7 @@
 import createTodo, { createTodoObject, TodoItem } from "./todo_item";
-import { isBefore, isSameDay } from "date-fns";
+import { isBefore, isSameDay, set } from "date-fns";
 import { assert } from "chai";
+import { ProjectItem } from "./project_item";
 
 export const todoList = (function () {
 	const delimiter = ">/\\<";
@@ -55,12 +56,18 @@ export const todoList = (function () {
 		const dueDateB = todoB.dueDate;
 		const idA = todoA.id;
 		const idB = todoB.id;
+		const completedA = todoA.completed;
+		const completedB = todoB.completed;
 
-		if (isSameDay(dueDateA, dueDateB)) {
-			if (priorityA == priorityB) return Number(idA) - Number(idB);
-			else return priorityA - priorityB;
+		if (completedA && !completedB) return 1;
+		else if (completedB && !completedA) return -1;
+		else {
+			if (isSameDay(dueDateA, dueDateB)) {
+				if (priorityA == priorityB) return Number(idA) - Number(idB);
+				else return priorityA - priorityB;
+			}
+			return isBefore(dueDateA, dueDateB) ? -1 : 1;
 		}
-		return isBefore(dueDateA, dueDateB) ? -1 : 1;
 	};
 
 	const isValidTodo = (todo: TodoItem): boolean => {
@@ -94,11 +101,39 @@ export const todoList = (function () {
 		}
 	};
 
+	// const getProjectNames = (): string[] => {
+	// 	const projectVal = localStorage.getItem("Projects");
+	// 	const projects = projectVal?.split(delimiter);
+	// 	return projects ? projects : [];
+	// };
+
 	const getProjectNames = (): string[] => {
-		const projectVal = localStorage.getItem("Projects");
-		const projects = projectVal?.split(delimiter);
-		return projects ? projects : [];
+		let projects = new Set<string>();
+		for (const todo of getAllTodos()) projects.add(todo.project);
+		return [...projects];
 	};
+
+	const getAllProjectsMetadata = (): Map<String, ProjectItem> => {
+		let projects = new Map<String, ProjectItem>();
+		for (const todo of getAllTodos()) {
+			if (projects.has(todo.project)) {
+				let projectMetadata = projects.get(todo.project) as ProjectItem;
+				projectMetadata.completedTodos += todo.completed ? 1 : 0;
+				projectMetadata.pendingTodos += todo.completed ? 0 : 1;
+				projectMetadata.totalStoryPoints += todo.storyPoints;
+			} else {
+				const projectMetadata = {
+					name: todo.project,
+					completedTodos: todo.completed ? 1 : 0,
+					pendingTodos: todo.completed ? 0 : 1,
+					totalStoryPoints: todo.storyPoints,
+				} as ProjectItem;
+				projects.set(todo.project, projectMetadata);
+			}
+		}
+		return projects;
+	};
+
 	return {
 		addTodo,
 		addProject,
@@ -108,5 +143,6 @@ export const todoList = (function () {
 		getAllTodos,
 		getProject,
 		getProjectNames,
+		getAllProjectsMetadata,
 	};
 })();

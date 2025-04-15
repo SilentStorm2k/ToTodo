@@ -49,33 +49,42 @@ export const Sidebar = (function () {
 
 	const createProjects = () => {
 		const projects = document.createElement("div");
-		const text = document.createElement("div");
+		const projectText = document.createElement("div");
 		const projectButtonContainer = document.createElement("div");
 		const projectDropdownButton = document.createElement("button");
 		const projectDropdown = document.createElement("div");
-		projectButtonContainer.appendChild(text);
+		projectButtonContainer.appendChild(projectText);
 		projectButtonContainer.appendChild(projectDropdownButton);
-		projectDropdown.classList.add("projectDropdownClose");
+		projectDropdown.classList.add("projectDropdownOpen");
 		projects.appendChild(projectButtonContainer);
 		projects.appendChild(projectDropdown);
 		projectDropdownButton.addEventListener("click", toggleProjectDropdown);
 		populateProjectDropdown(projectDropdown);
+
+		projectText.innerText = "Projects";
+		projectText.addEventListener("click", () => Render.showProjects());
 		return projects;
 	};
 
 	const toggleProjectDropdown = (e: MouseEvent) => {
 		const projectDropdownButton = e.target as HTMLElement;
 		const projectButtonContainer = projectDropdownButton.parentElement;
-		const projectDropdownDiv = projectButtonContainer?.children[1];
+
+		const projectDropdownDiv =
+			projectButtonContainer?.nextSibling as HTMLElement;
 		if (projectDropdownDiv?.classList.contains("projectDropdownClose")) {
 			projectDropdownDiv.classList.add("projectDropdownOpen");
 			projectDropdownDiv.classList.remove("projectDropdownClose");
+			projectDropdownButton.style.backgroundImage =
+				"url('../assets/images/down-arrow.png')";
 		} else {
 			assert(
 				projectDropdownDiv?.classList.contains("projectDropdownOpen")
 			);
 			projectDropdownDiv?.classList.remove("projectDropdownOpen");
 			projectDropdownDiv?.classList.add("projectDropdownClose");
+			projectDropdownButton.style.backgroundImage =
+				"url('../assets/images/up-arrow.png')";
 		}
 	};
 

@@ -101,3 +101,54 @@
 .todo-card.p3 {
 	background-color: #f6ffed;
 }
+
+.todoContainer:has(.project-card) {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.project-card {
+	background-color: #f7faf4;
+	border-radius: 0.5rem;
+	box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+	padding: 1.5rem;
+	width: 20rem; /* Adjust width as needed */
+	cursor: pointer;
+}
+
+.project-name {
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+	color: 3;
+}
+
+.project-details {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.todos,
+.story-points {
+	font-size: 0.9rem;
+	color: #555;
+}
+
+.todos span:first-child,
+.story-points span:first-child {
+	font-weight: bold;
+	margin-right: 0.3rem;
+}
+
+.completed-count {
+	color: green;
+}
+
+.pending-count {
+	color: orange;
+}
+
+.points-count {
+	color: blue;
+}

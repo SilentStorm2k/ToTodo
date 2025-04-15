@@ -7,6 +7,7 @@ import create_todo, {
 import { todoList } from "./todo_list";
 import "../css/renderTodos.styles.css";
 import { cleanElement } from "./reset";
+import { ProjectItem } from "./project_item";
 
 export const Render = (function () {
 	const createTodo = () => {
@@ -183,5 +184,74 @@ export const Render = (function () {
 		});
 	};
 
-	return { createTodo, setupTodoInputForm, showTodos };
+	const showProjects = () => {
+		const todoContainer: HTMLElement = document.querySelector(
+			".todoContainer"
+		) as HTMLElement;
+		cleanElement(todoContainer);
+		const projects = todoList.getAllProjectsMetadata();
+		for (const project of projects)
+			todoContainer?.appendChild(projectDiv(project));
+	};
+
+	const projectDiv = (projectMetadata: [String, ProjectItem]) => {
+		const project = projectMetadata[1];
+
+		const cardDiv = document.createElement("div");
+		cardDiv.className = "project-card";
+
+		const projectName = document.createElement("h3");
+		projectName.className = "project-name";
+		projectName.textContent = project.name;
+		cardDiv.appendChild(projectName);
+
+		const projectDetails = document.createElement("div");
+		projectDetails.className = "project-details";
+
+		// Completed Todos
+		const todosCompletedDiv = document.createElement("div");
+		todosCompletedDiv.className = "todos";
+		const completedLabel = document.createElement("span");
+		completedLabel.textContent = "Completed:";
+		const completedCountSpan = document.createElement("span");
+		completedCountSpan.className = "completed-count";
+		completedCountSpan.textContent = String(project.completedTodos);
+		todosCompletedDiv.appendChild(completedLabel);
+		todosCompletedDiv.appendChild(completedCountSpan);
+		projectDetails.appendChild(todosCompletedDiv);
+
+		// Pending Todos
+		const todosPendingDiv = document.createElement("div");
+		todosPendingDiv.className = "todos";
+		const pendingLabel = document.createElement("span");
+		pendingLabel.textContent = "Pending:";
+		const pendingCountSpan = document.createElement("span");
+		pendingCountSpan.className = "pending-count";
+		pendingCountSpan.textContent = String(project.pendingTodos);
+		todosPendingDiv.appendChild(pendingLabel);
+		todosPendingDiv.appendChild(pendingCountSpan);
+		projectDetails.appendChild(todosPendingDiv);
+
+		// Total Story Points
+		const storyPointsDiv = document.createElement("div");
+		storyPointsDiv.className = "story-points";
+		const pointsLabel = document.createElement("span");
+		pointsLabel.textContent = "Story Points:";
+		const pointsCountSpan = document.createElement("span");
+		pointsCountSpan.className = "points-count";
+		pointsCountSpan.textContent = String(project.totalStoryPoints);
+		storyPointsDiv.appendChild(pointsLabel);
+		storyPointsDiv.appendChild(pointsCountSpan);
+		projectDetails.appendChild(storyPointsDiv);
+
+		cardDiv.appendChild(projectDetails);
+
+		cardDiv.addEventListener("click", () =>
+			Render.showTodos(todoList.getProject(project.name))
+		);
+
+		return cardDiv;
+	};
+
+	return { createTodo, setupTodoInputForm, showTodos, showProjects };
 })();

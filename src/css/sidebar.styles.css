@@ -5,7 +5,7 @@
 	background-color: var(--color-2);
 	padding: 1rem;
 	box-sizing: border-box;
-	transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 	overflow-x: hidden; /* Hide horizontal overflow of content when minimized */
 	display: flex;
 	flex-direction: column;
@@ -54,5 +54,31 @@
 
 .sidebar-closed button,
 .sidebar-closed div {
+	display: none;
+}
+
+/* this targets the projects text container */
+.sidebar > div > div {
+	display: flex;
+	gap: 1rem;
+}
+
+.sidebar > div > div > button {
+	background: 0 0;
+	cursor: pointer;
+	overflow: hidden;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	transition: all 0.14s ease-out;
+	white-space: nowrap;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url(../assets/images/down-arrow.png);
+	/* <a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by th studio - Flaticon</a> */
+	/* <a href="https://www.flaticon.com/free-icons/up-arrow" title="up arrow icons">Up arrow icons created by Freepik - Flaticon</a> */
+}
+
+.projectDropdownClose * {
 	display: none;
 }
