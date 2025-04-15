@@ -44,19 +44,25 @@ function test() {
 test();
 
 export function init() {
+	// setup
 	const body = document.querySelector("body");
-	cleanElement(body);
-	// addFavicon();
-	body?.appendChild(Header());
-
+	const header = Header();
+	const footer = Footer();
+	const todoInputFormDiv = todoInputForm(); // this creates the input form in html (sets up dialog modal, etc.)
 	const todoContainer = document.createElement("div");
 	todoContainer.classList.add("todoContainer");
-	body?.appendChild(todoContainer);
 
-	body?.appendChild(todoInputForm()); // this creates the input form in html (sets up dialog modal, etc.)
+	// adding elements in order to body
+	cleanElement(body);
+	// addFavicon();
+	body?.appendChild(header);
+	body?.appendChild(todoContainer);
+	body?.appendChild(todoInputFormDiv);
+	body?.appendChild(footer);
+
+	// populating the elements
 	Render.setupTodoInputForm(); // this adds the functionality of the input form (buttons, default values, etc.)
 	Render.showTodos(todoList.getAllTodos()); // shows all todos
-	body?.appendChild(Footer());
 }
 
 init();
