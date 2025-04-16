@@ -202,7 +202,7 @@ Project Link: [https://github.com/SilentStorm2k/Totodo](https://github.com/Silen
 [issues-shield]: https://img.shields.io/github/issues/SilentStorm2k/Totodo.svg?style=for-the-badge
 [issues-url]: https://github.com/SilentStorm2k/Totodo/issues
 [license-shield]: https://img.shields.io/github/license/SilentStorm2k/Totodo.svg?style=for-the-badge
-[license-url]: https://github.com/SilentStorm2k/Totodo/blob/main/LICENSE.txt
+[license-url]: https://github.com/SilentStorm2k/Totodo/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
