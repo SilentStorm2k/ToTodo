@@ -3,10 +3,14 @@ import "../css/sidebar.styles.css";
 import { cleanElement } from "./reset";
 import { Render } from "./renderTodos";
 import { assert } from "chai";
+import todoInputForm from "./todoInputForm";
 
 export const Sidebar = (function () {
 	const addProject = (project: string) => {
 		todoList.addProject(project);
+		const dialog = document.querySelector("dialog") as HTMLDialogElement;
+		cleanElement(dialog);
+		dialog.parentNode?.replaceChild(todoInputForm(), dialog);
 	};
 
 	const createSidebarContainer = () => {
@@ -60,7 +64,6 @@ export const Sidebar = (function () {
 				"default"
 			) as string;
 			if (projectName == null) return;
-			console.log(projectName, "boom shakalaka");
 			addProject(projectName);
 			const sidebar = document.querySelector(".sidebar") as HTMLElement;
 			sidebar.parentNode?.replaceChild(init(), sidebar);

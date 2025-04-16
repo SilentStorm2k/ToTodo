@@ -87,8 +87,6 @@ export const Render = (function () {
 		detailsDiv.classList.add("mainContainer");
 
 		const deleteTodoButton = document.createElement("button");
-		deleteTodoButton.style.backgroundImage =
-			"url(../assets/images/delete.png)";
 		deleteTodoButton.addEventListener("click", (e) => {
 			todoList.removeTodo(todo);
 			const curState = localStorage.getItem("state") as string;
