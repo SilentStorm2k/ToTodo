@@ -89,7 +89,7 @@ export const todoList = (function () {
 
 	const addProject = (project: string) => {
 		assert(
-			project.includes(delimiter),
+			!project.includes(delimiter),
 			`Project should not contain the delimiter ${delimiter}`
 		);
 		let projects = getProjectNames();
@@ -110,11 +110,34 @@ export const todoList = (function () {
 	const getProjectNames = (): string[] => {
 		let projects = new Set<string>();
 		for (const todo of getAllTodos()) projects.add(todo.project);
-		return [...projects];
+		syncProjects([...projects]);
+		const allProjects = localStorage.getItem("Projects") as string;
+		console.log("projects = ", allProjects.split(delimiter));
+		return allProjects.split(delimiter);
+	};
+
+	const syncProjects = (todoProjects: string[]) => {
+		let localProjects =
+			localStorage.getItem("Projects") != null
+				? (localStorage.getItem("Projects") as string)
+				: "";
+		const projects = new Set(localProjects.split(delimiter));
+		for (const project of todoProjects) projects.add(project);
+		let newProjects = Array.from(projects);
+		localStorage.setItem("Projects", newProjects.join(delimiter));
 	};
 
 	const getAllProjectsMetadata = (): Map<String, ProjectItem> => {
 		let projects = new Map<String, ProjectItem>();
+		for (const project of getProjectNames()) {
+			projects.set(project, {
+				name: project,
+				completedTodos: 0,
+				pendingTodos: 0,
+				totalStoryPoints: 0,
+			} as ProjectItem);
+		}
+
 		for (const todo of getAllTodos()) {
 			if (projects.has(todo.project)) {
 				let projectMetadata = projects.get(todo.project) as ProjectItem;

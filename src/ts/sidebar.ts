@@ -51,6 +51,23 @@ export const Sidebar = (function () {
 
 	const createProjects = () => {
 		const projects = document.createElement("div");
+		const addProjectButton = document.createElement("button");
+		addProjectButton.innerText = "Add project";
+		addProjectButton.classList.add("button-outline");
+		addProjectButton.addEventListener("click", () => {
+			let projectName = prompt(
+				"Enter Project Name:",
+				"default"
+			) as string;
+			if (projectName == null) return;
+			console.log(projectName, "boom shakalaka");
+			addProject(projectName);
+			const sidebar = document.querySelector(".sidebar") as HTMLElement;
+			sidebar.parentNode?.replaceChild(init(), sidebar);
+			localStorage.setItem("state", projectName);
+			Render.showTodos(todoList.getProject(projectName));
+		});
+
 		const projectText = document.createElement("div");
 		const projectButtonContainer = document.createElement("div");
 		const projectDropdownButton = document.createElement("button");
@@ -58,6 +75,7 @@ export const Sidebar = (function () {
 		projectButtonContainer.appendChild(projectText);
 		projectButtonContainer.appendChild(projectDropdownButton);
 		projectDropdown.classList.add("projectDropdownOpen");
+		projects.appendChild(addProjectButton);
 		projects.appendChild(projectButtonContainer);
 		projects.appendChild(projectDropdown);
 		projectDropdownButton.addEventListener("click", toggleProjectDropdown);
