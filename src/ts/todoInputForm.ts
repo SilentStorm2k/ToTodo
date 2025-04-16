@@ -59,6 +59,12 @@ export default function todoInputForm() {
 	div.appendChild(confirmAddButton);
 	div.appendChild(cancelButton);
 	form.appendChild(div);
+	cancelButton.addEventListener("click", () => {
+		const form = document.getElementById(
+			"todoInputFormDialog"
+		) as HTMLDialogElement;
+		form?.close();
+	});
 	return dialog;
 }
 
