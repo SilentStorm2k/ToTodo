@@ -51,15 +51,12 @@ nav > button:focus-visible {
 
 .homeButton {
 	background-image: url("../assets/images/home.png");
-	/* <a href="https://www.flaticon.com/free-icons/home" title="home icons">Home icons created by Dave Gandy - Flaticon</a> */
 }
 
 .expandButton {
 	background-image: url("../assets/images/menu.png");
-	/* <a href="https://www.flaticon.com/free-icons/open-menu" title="open menu icons">Open menu icons created by Pixel perfect - Flaticon</a> */
 }
 
 .addButton {
 	background-image: url("../assets/images/more.png");
-	/* <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add icons created by reussy - Flaticon</a> */
 }

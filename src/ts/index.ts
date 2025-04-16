@@ -68,4 +68,5 @@ export function init() {
 	Render.showTodos(todoList.getAllTodos()); // shows all todos
 }
 
+test();
 init();
